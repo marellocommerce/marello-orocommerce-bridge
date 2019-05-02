@@ -1,6 +1,0 @@
-data:
-      type: categories
-      attributes:
-          code: 'new_category'
-          name: 'new category'
-          description: 'new category'

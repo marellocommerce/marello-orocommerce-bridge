@@ -1,8 +1,0 @@
-marello:
-    core:
-        yes.label: Yes
-        no.label: No
-        system_configuration:
-            groups:
-                marello:
-                    title: Marello
