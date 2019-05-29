@@ -17,6 +17,7 @@ class OroCommerceSettings extends Transport
     const KEY_FIELD = 'key';
     const USERNAME_FIELD = 'username';
     const WAREHOUSE_FIELD = 'warehouse';
+    const BUSINESSUNIT_FIELD = 'businessunit';
     const PRODUCTUNIT_FIELD = 'productunit';
     const CUSTOMERTAXCODE_FIELD = 'customertaxcode';
     const PRICELIST_FIELD = 'pricelist';
@@ -53,6 +54,13 @@ class OroCommerceSettings extends Transport
      */
     private $userName;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="orocommerce_businessunit", type="integer", nullable=false)
+     */
+    private $businessUnit;
+    
     /**
      * @var string
      *
@@ -194,6 +202,25 @@ class OroCommerceSettings extends Transport
     {
         $this->userName = $userName;
 
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBusinessUnit()
+    {
+        return $this->businessUnit;
+    }
+
+    /**
+     * @param int $businessUnit
+     * @return $this
+     */
+    public function setBusinessUnit($businessUnit)
+    {
+        $this->businessUnit = $businessUnit;
+        
         return $this;
     }
 
@@ -382,6 +409,7 @@ class OroCommerceSettings extends Transport
                     self::ENTERPRISE_FIELD => $this->isEnterprise(),
                     self::USERNAME_FIELD => $this->getUserName(),
                     self::WAREHOUSE_FIELD => $this->getWarehouse(),
+                    self::BUSINESSUNIT_FIELD => $this->getBusinessUnit(),
                     self::PRODUCTUNIT_FIELD => $this->getProductUnit(),
                     self::CUSTOMERTAXCODE_FIELD => $this->getCustomerTaxCode(),
                     self::PRICELIST_FIELD => $this->getPriceList(),

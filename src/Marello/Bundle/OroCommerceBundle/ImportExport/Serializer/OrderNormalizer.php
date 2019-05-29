@@ -149,7 +149,7 @@ class OrderNormalizer extends AbstractNormalizer implements DenormalizerInterfac
             if ($billingAddress) {
                 $billingAddress = $this->prepareAddress($billingAddress);
                 if ($billingAddress) {
-                    $order->setShippingAddress($billingAddress);
+                    $order->setBillingAddress($billingAddress);
                 }
             }
         }
