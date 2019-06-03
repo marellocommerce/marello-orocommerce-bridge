@@ -212,7 +212,7 @@ define(function(require) {
                         .remove();
                     var selectedExists = false;
                     $(json).each(function(index, data) {
-                        if (selectedItem.toString() === data.value) {
+                        if (selectedItem !== null && selectedItem.toString() === data.value) {
                             selectedExists = true
                         }
                         $(selector)
