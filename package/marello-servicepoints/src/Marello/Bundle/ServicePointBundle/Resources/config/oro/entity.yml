@@ -16,6 +16,18 @@ oro_entity:
             alias: marelloservicepointaddress
             plural_alias: marelloservicepointaddresses
 
+        Marello\Bundle\ServicePointBundle\Entity\BusinessHours:
+            alias: marellobusinesshours
+            plural_alias: marellobusinesshours
+
         Marello\Bundle\ServicePointBundle\Entity\TimePeriod:
             alias: marellotimeperiod
             plural_alias: marellotimeperiods
+
+        Marello\Bundle\ServicePointBundle\Entity\BusinessHoursOverride:
+            alias: marellobusinesshoursoverride
+            plural_alias: marellobusinesshoursoverrides
+
+        Marello\Bundle\ServicePointBundle\Entity\TimePeriodOverride:
+            alias: marellotimeperiodoverride
+            plural_alias: marellotimeperiodoverrides
