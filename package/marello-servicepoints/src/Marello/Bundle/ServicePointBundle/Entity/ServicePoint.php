@@ -108,7 +108,7 @@ class ServicePoint extends ExtendServicePoint implements DatesAwareInterface
      * @var ServicePointAddress
      *
      * @ORM\OneToOne(targetEntity="Marello\Bundle\ServicePointBundle\Entity\ServicePointAddress", cascade={"ALL"})
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="address_id", referencedColumnName="id", onDelete="CASCADE")
      * @ConfigField(defaultValues={
      *     "entity"={
      *         "label" = "marello.servicepoint.address.label"

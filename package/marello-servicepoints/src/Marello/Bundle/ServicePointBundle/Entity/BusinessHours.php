@@ -19,7 +19,7 @@ use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\ConfigField;
  *         @ORM\Index(columns={"day_of_week"})
  *     },
  *     uniqueConstraints={
- *         @ORM\UniqueConstraint(columns={"servicepoint_facility_id", "day_of_week"})
+ *         @ORM\UniqueConstraint(columns={"day_of_week", "servicepoint_facility_id"})
  *     }
  * )
  * @Config(

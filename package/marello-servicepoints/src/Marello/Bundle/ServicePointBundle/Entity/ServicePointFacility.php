@@ -56,7 +56,7 @@ class ServicePointFacility extends ExtendServicePointFacility implements DatesAw
      * @var ServicePoint
      *
      * @ORM\ManyToOne(targetEntity="Marello\Bundle\ServicePointBundle\Entity\ServicePoint", inversedBy="servicePointFacilities")
-     * @ORM\JoinColumn(name="service_point_id", nullable=false)
+     * @ORM\JoinColumn(name="service_point_id", nullable=false, onDelete="CASCADE")
      * @ConfigField(defaultValues={
      *     "entity"={
      *         "label" = "marello.servicepoint.servicepoint_facility.service_point.label"
@@ -69,7 +69,7 @@ class ServicePointFacility extends ExtendServicePointFacility implements DatesAw
      * @var Facility
      *
      * @ORM\ManyToOne(targetEntity="Marello\Bundle\ServicePointBundle\Entity\Facility")
-     * @ORM\JoinColumn(name="facility_id", nullable=false)
+     * @ORM\JoinColumn(name="facility_id", nullable=false, onDelete="CASCADE")
      * @ConfigField(defaultValues={
      *     "entity"={
      *         "label" = "marello.servicepoint.servicepoint_facility.facility.label"
