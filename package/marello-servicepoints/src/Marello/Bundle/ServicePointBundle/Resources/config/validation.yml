@@ -1,4 +1,4 @@
-Marello\Bundle\ServicePointBundle\Entity\ServicePoint:
+'Marello\Bundle\ServicePointBundle\Entity\ServicePoint':
     properties:
         labels:
             - 'Type': 'Doctrine\Common\Collections\Collection'
@@ -34,7 +34,7 @@ Marello\Bundle\ServicePointBundle\Entity\ServicePoint:
             - 'Type': 'Oro\Bundle\AttachmentBundle\Entity\File'
             - 'Valid': ~
 
-Marello\Bundle\ServicePointBundle\Entity\ServicePointAddress:
+'Marello\Bundle\ServicePointBundle\Entity\ServicePointAddress':
     properties:
         street:
             - 'NotBlank': ~
@@ -48,7 +48,7 @@ Marello\Bundle\ServicePointBundle\Entity\ServicePointAddress:
         organization:
             - 'Type': 'string'
 
-Marello\Bundle\ServicePointBundle\Entity\ServicePointFacility:
+'Marello\Bundle\ServicePointBundle\Entity\ServicePointFacility':
     properties:
         servicePoint:
             - 'NotNull': ~
@@ -66,8 +66,13 @@ Marello\Bundle\ServicePointBundle\Entity\ServicePointFacility:
                 traverse: true
             - 'All':
                 - 'Type': 'Marello\Bundle\ServicePointBundle\Entity\BusinessHours'
+        businessHoursOverrides:
+            - 'Valid':
+                traverse: true
+            - 'All':
+                - 'Type': 'Marello\Bundle\ServicePointBundle\Entity\BusinessHoursOverride'
 
-Marello\Bundle\ServicePointBundle\Entity\Facility:
+'Marello\Bundle\ServicePointBundle\Entity\Facility':
     constraints:
         - 'Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity':
             fields: ['code']
@@ -83,7 +88,7 @@ Marello\Bundle\ServicePointBundle\Entity\Facility:
         code:
             - 'NotBlank': ~
 
-Marello\Bundle\ServicePointBundle\Entity\AbstractTimePeriod:
+'Marello\Bundle\ServicePointBundle\Entity\AbstractTimePeriod':
     constraints:
         - 'Marello\Bundle\ServicePointBundle\Constraint\TimeInterval':
             startField: openTime
@@ -96,7 +101,7 @@ Marello\Bundle\ServicePointBundle\Entity\AbstractTimePeriod:
             - 'Type': 'DateTime'
             - 'NotNull': ~
 
-Marello\Bundle\ServicePointBundle\Entity\BusinessHours:
+'Marello\Bundle\ServicePointBundle\Entity\BusinessHours':
     constraints:
         - 'Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity':
             fields: ['dayOfWeek', 'servicePointFacility']
@@ -109,7 +114,7 @@ Marello\Bundle\ServicePointBundle\Entity\BusinessHours:
                 - 'Type': 'Marello\Bundle\ServicePointBundle\Entity\TimePeriod'
             - 'Marello\Bundle\ServicePointBundle\Constraint\NoOverlappingBusinessHours': ~
 
-Marello\Bundle\ServicePointBundle\Entity\BusinessHoursOverride:
+'Marello\Bundle\ServicePointBundle\Entity\BusinessHoursOverride':
     constraints:
         - 'Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity':
             fields: ['date', 'servicePointFacility']
@@ -123,5 +128,5 @@ Marello\Bundle\ServicePointBundle\Entity\BusinessHoursOverride:
                 choices: ['open', 'closed']
         timePeriods:
             - 'All':
-                - 'Type': 'Marello\Bundle\ServicePointBundle\Entity\TimePeriod'
+                - 'Type': 'Marello\Bundle\ServicePointBundle\Entity\TimePeriodOverride'
             - 'Marello\Bundle\ServicePointBundle\Constraint\NoOverlappingBusinessHours': ~
