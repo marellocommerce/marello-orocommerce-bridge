@@ -2,3 +2,6 @@ marello:
     servicepoint:
         no_overlapping_business_hours.message: "These business hours overlap with others"
         time_interval.message: "This is not a valid time interval"
+        business_hours_overrides:
+            open.message: "There must be business hours when open"
+            closed.message: "There cannot be business hours when closed"

@@ -118,6 +118,7 @@
     constraints:
         - 'Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity':
             fields: ['date', 'servicePointFacility']
+        - 'Marello\Bundle\ServicePointBundle\Constraint\BusinessHoursOverrides': ~
     properties:
         date:
             - 'Date': ~
