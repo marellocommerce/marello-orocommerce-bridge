@@ -15,8 +15,8 @@
                     <th class="businesshoursoverrides-line-item-date"><span>{{ 'marello.servicepoint.businesshours.date.label'|trans }}</span></th>
                     <th class="businesshoursoverrides-line-item-openstatus"><span>{{ 'marello.servicepoint.businesshours.open_status.label'|trans }}</span></th>
                     <th class="businesshoursoverrides-line-item-timeperiods">
-                        <div class="businesshoursoverrides-line-item-opentime"><span>{{ 'marello.servicepoint.timeperiod.open_time.label'|trans }}</span></div>
-                        <div class="businesshoursoverrides-line-item-closetime"><span>{{ 'marello.servicepoint.timeperiod.close_time.label'|trans }}</span></div>
+                        <div class="businesshoursoverrides-line-item-opentime line-item-time"><span>{{ 'marello.servicepoint.timeperiod.open_time.label'|trans }}</span></div>
+                        <div class="businesshoursoverrides-line-item-closetime line-item-time"><span>{{ 'marello.servicepoint.timeperiod.close_time.label'|trans }}</span></div>
                         <div class="businesshoursoverrides-line-item-actions"><span>&nbsp;</span></div>
                     </th>
                     <th>&nbsp;</th>
@@ -91,7 +91,6 @@
     {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshoursoverrides-line-item-timeperiods'}) %}
 <td {{ block('widget_attributes') }}>
     {{ form_widget(form) }}
-    {{ form_errors(form) }}
 </td>
 {% endblock %}
 
@@ -154,7 +153,6 @@
     {%- spaceless -%}
         {%- for child in form.children -%}
 {{- form_widget(child) -}}
-{{- form_errors(child) -}}
         {%- endfor -%}
 <div class="businesshoursoverrides-line-item-actions">
     <button class="removeRow btn btn-sm btn-icon"
@@ -169,12 +167,16 @@
 
 {% block _service_point_facility_businessHoursOverrides_entry_timePeriods_entry_openTime_widget %}
     {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshoursoverrides-line-item-opentime'}) %}
+<div class="line-item-time">
 {{ form_widget(form, {'attr': attr}) }}
 {{ form_errors(form, {'attr': attr}) }}
+</div>
 {% endblock %}
 
 {% block _service_point_facility_businessHoursOverrides_entry_timePeriods_entry_closeTime_widget %}
     {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshoursoverrides-line-item-closetime'}) %}
+<div class="line-item-time">
 {{ form_widget(form, {'attr': attr}) }}
 {{ form_errors(form, {'attr': attr}) }}
+</div>
 {% endblock %}

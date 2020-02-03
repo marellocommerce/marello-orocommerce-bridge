@@ -35,12 +35,11 @@ table {
 
   .businesshours-line-item-timeperiods,
   .businesshoursoverrides-line-item-timeperiods {
-    .businesshours-line-item-opentime,
-    .businesshours-line-item-closetime,
-    .businesshoursoverrides-line-item-opentime,
-    .businesshoursoverrides-line-item-closetime {
+    .line-item-time,
+    .validation-failed {
       display: inline-block;
       width: 45%;
+      vertical-align: top;
     }
 
     .businesshours-line-item-actions,

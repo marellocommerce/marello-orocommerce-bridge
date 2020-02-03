@@ -9,8 +9,8 @@
                 <tr>
                     <th class="businesshours-line-item-dayofweek"><span>{{ 'marello.servicepoint.businesshours.day_of_week.label'|trans }}</span></th>
                     <th class="businesshours-line-item-timeperiods">
-                        <div class="businesshours-line-item-opentime"><span>{{ 'marello.servicepoint.timeperiod.open_time.label'|trans }}</span></div>
-                        <div class="businesshours-line-item-closetime"><span>{{ 'marello.servicepoint.timeperiod.close_time.label'|trans }}</span></div>
+                        <div class="businesshours-line-item-opentime line-item-time"><span>{{ 'marello.servicepoint.timeperiod.open_time.label'|trans }}</span></div>
+                        <div class="businesshours-line-item-closetime line-item-time"><span>{{ 'marello.servicepoint.timeperiod.close_time.label'|trans }}</span></div>
                         <div class="businesshours-line-item-actions"><span>&nbsp;</span></div>
                     </th>
                 </tr>
@@ -48,7 +48,6 @@
     {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshours-line-item-timeperiods'}) %}
 <td {{ block('widget_attributes') }}>
     {{ form_widget(form) }}
-    {{ form_errors(form) }}
 </td>
 {% endblock %}
 
@@ -111,7 +110,6 @@
     {%- spaceless -%}
         {%- for child in form.children -%}
 {{- form_widget(child) -}}
-{{- form_errors(child) -}}
         {%- endfor -%}
 <div class="businesshours-line-item-actions">
     <button class="removeRow btn btn-sm btn-icon"
@@ -126,12 +124,16 @@
 
 {% block _service_point_facility_businessHours_entry_timePeriods_entry_openTime_widget %}
     {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshours-line-item-opentime'}) %}
+<div class="line-item-time">
 {{ form_widget(form, {'attr': attr}) }}
 {{ form_errors(form, {'attr': attr}) }}
+</div>
 {% endblock %}
 
 {% block _service_point_facility_businessHours_entry_timePeriods_entry_closeTime_widget %}
     {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshours-line-item-closetime'}) %}
+<div class="line-item-time">
 {{ form_widget(form, {'attr': attr}) }}
 {{ form_errors(form, {'attr': attr}) }}
+</div>
 {% endblock %}
