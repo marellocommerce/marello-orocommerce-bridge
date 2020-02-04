@@ -54,10 +54,15 @@
         {% set disabled = widget.parent.vars.disabled %}
     {% endif %}
 
+    {% set options = {
+        'view': 'marelloservicepoint/js/app/views/businesshoursoverrides-item-view',
+        'openStatusSelector': '#' ~ form.openStatus.vars.id,
+    } %}
+
 <tr data-content="{{ name }}" data-validation-optional-group {{ block('widget_container_attributes') }}
     class="marello-line-item display-values"
     data-page-component-module="oroui/js/app/components/view-component"
-    data-page-component-options="{{ {view: 'marelloservicepoint/js/app/views/businesshoursoverrides-item-view'}|json_encode }}"
+    data-page-component-options="{{ options|json_encode }}"
     data-layout="separate">
     {{ form_widget(form) }}
 

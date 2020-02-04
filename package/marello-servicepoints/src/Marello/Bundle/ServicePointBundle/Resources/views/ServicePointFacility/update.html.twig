@@ -62,7 +62,8 @@
     <div class="servicepointfacility-businesshours-overrides"
          data-page-component-module="oroui/js/app/components/view-component"
          data-page-component-options="{{ {
-             view: 'marelloservicepoint/js/app/views/businesshoursoverrides-items-view'
+             view: 'marelloservicepoint/js/app/views/businesshoursoverrides-items-view',
+             closedValue: constant('Marello\\Bundle\\ServicePointBundle\\Entity\\BusinessHoursOverride::STATUS_CLOSED')
          }|json_encode }}"
          data-layout="separate">
         {{ form_widget(form.businessHoursOverrides) }}

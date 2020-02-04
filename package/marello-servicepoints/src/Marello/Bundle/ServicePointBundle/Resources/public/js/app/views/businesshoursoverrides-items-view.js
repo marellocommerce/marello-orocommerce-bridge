@@ -3,6 +3,7 @@ define(function(require) {
 
     var BusinessHoursOverridesView,
         $ = require('jquery'),
+        mediator = require('oroui/js/mediator'),
         AbstractItemsView = require('marellolayout/js/app/views/abstract-items-view');
 
     /**
@@ -15,18 +16,49 @@ define(function(require) {
          * @property {Object}
          */
         options: {
-            data: {},
-            route: "marello_order_item_data"
+            closedValue: "closed"
         },
 
         /**
          * @inheritDoc
          */
         initialize: function(options) {
-            console.log('initiialize');
             this.options = $.extend(true, {}, this.options, options || {});
             BusinessHoursOverridesView.__super__.initialize.apply(this, arguments);
-        }
+
+            this.bindEvents();
+        },
+
+        bindEvents: function() {
+            mediator.subscribe('servicepointfacility-businesshours:openstatus:change', this.toggleTimePeriods, this);
+        },
+
+        toggleTimePeriods: function(e) {
+            if (!e.businessHoursRowSelector) {
+                return;
+            }
+
+            if (e.value === this.options.closedValue) {
+                this.hideTimePeriods(e.businessHoursRowSelector);
+            } else {
+                this.showTimePeriods(e.businessHoursRowSelector);
+            }
+        },
+
+        hideTimePeriods: function(selector) {
+            var $container = $(selector).find('.businesshoursoverrides-line-item-timeperiods');
+            $container.children().each(function () {
+                $(this).hide();
+            });
+        },
+
+        showTimePeriods: function(selector) {
+            var $container = $(selector).find('.businesshoursoverrides-line-item-timeperiods');
+            $container.show();
+            $container.children().each(function () {
+                $(this).show();
+            });
+        },
     });
 
     return BusinessHoursOverridesView;
