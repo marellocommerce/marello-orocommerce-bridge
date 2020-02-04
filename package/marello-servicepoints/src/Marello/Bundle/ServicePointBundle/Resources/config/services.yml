@@ -24,3 +24,8 @@ services:
             - '@marello_servicepoint.provider.day_of_week'
         tags:
             - { name: twig.extension }
+
+    marello_servicepoint.event_listener.business_hours_time_periods:
+        class: 'Marello\Bundle\ServicePointBundle\EventListener\BusinessHoursTimePeriodsEventListener'
+        tags:
+            - { name: doctrine.event_subscriber }
