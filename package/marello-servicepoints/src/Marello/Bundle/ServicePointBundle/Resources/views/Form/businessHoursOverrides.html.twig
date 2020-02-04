@@ -72,24 +72,21 @@
 {% endmacro %}
 
 {% block _service_point_facility_businessHoursOverrides_entry_date_row %}
-    {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshoursoverrides-line-item-date'}) %}
-<td {{ block('widget_attributes') }}>
+<td class="businesshoursoverrides-line-item-date">
     {{ form_widget(form) }}
     {{ form_errors(form) }}
 </td>
 {% endblock %}
 
 {% block _service_point_facility_businessHoursOverrides_entry_openStatus_row %}
-    {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshoursoverrides-line-item-openstatus'}) %}
-<td {{ block('widget_attributes') }}>
+<td class="businesshoursoverrides-line-item-openstatus">
     {{ form_widget(form) }}
     {{ form_errors(form) }}
 </td>
 {% endblock %}
 
 {% block _service_point_facility_businessHoursOverrides_entry_timePeriods_row %}
-    {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshoursoverrides-line-item-timeperiods'}) %}
-<td {{ block('widget_attributes') }}>
+<td class="businesshoursoverrides-line-item-timeperiods">
     {{ form_widget(form) }}
 </td>
 {% endblock %}

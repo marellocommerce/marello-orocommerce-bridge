@@ -36,8 +36,7 @@
 {% endblock %}
 
 {% block _service_point_facility_businessHours_entry_dayOfWeek_row %}
-    {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshours-line-item-dayofweek'}) %}
-<td {{ block('widget_attributes') }}>
+<td class="businesshours-line-item-dayofweek">
     {{ value|format_dow }}
     {{ form_widget(form) }}
     {{ form_errors(form) }}
@@ -45,8 +44,7 @@
 {% endblock %}
 
 {% block _service_point_facility_businessHours_entry_timePeriods_row %}
-    {% set attr = attr|merge({'class': (attr.class is defined ? attr.class ~ ' ' : '') ~ 'businesshours-line-item-timeperiods'}) %}
-<td {{ block('widget_attributes') }}>
+<td class="businesshours-line-item-timeperiods">
     {{ form_widget(form) }}
 </td>
 {% endblock %}
