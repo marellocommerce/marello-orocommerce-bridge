@@ -9,6 +9,7 @@ use Marello\Bundle\ProductBundle\Entity\Product;
 use Marello\Bundle\ProductBundle\Tests\Functional\DataFixtures\LoadProductData;
 use Marello\Bundle\SalesBundle\Entity\SalesChannel;
 use Marello\Bundle\SalesBundle\Entity\SalesChannelGroup;
+use Marello\Bundle\SalesBundle\Entity\SalesChannelType;
 
 class LoadAdditionalSalesData extends AbstractOroCommerceFixture implements DependentFixtureInterface
 {
@@ -105,7 +106,7 @@ class LoadAdditionalSalesData extends AbstractOroCommerceFixture implements Depe
     {
         $channel = new SalesChannel($reference);
 
-        return $channel->setChannelType($data['type'])
+        return $channel->setChannelType($this->getChannelType($data['type']))
             ->setCode($data['code'])
             ->setCurrency($data['currency'])
             ->setActive($data['active'])
@@ -147,5 +148,24 @@ class LoadAdditionalSalesData extends AbstractOroCommerceFixture implements Depe
         }
 
         return $channelGroup;
+    }
+
+    /**
+     * @param string $name
+     * @return SalesChannelType
+     */
+    private function getChannelType($name)
+    {
+        $existingChannelType = $this->manager->getRepository(SalesChannelType::class)->find($name);
+        if ($existingChannelType) {
+            return $existingChannelType;
+        } else {
+            $channelType = new SalesChannelType($name);
+            $channelType->setLabel(ucfirst($name));
+            $this->manager->persist($channelType);
+            $this->manager->flush();
+
+            return $channelType;
+        }
     }
 }
