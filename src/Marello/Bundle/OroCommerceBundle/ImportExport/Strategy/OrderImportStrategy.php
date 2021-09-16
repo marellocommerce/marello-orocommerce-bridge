@@ -50,6 +50,8 @@ class OrderImportStrategy extends AbstractImportStrategy
                 'salesChannel' => $entity->getSalesChannel()
             ];
             $order = $this->getEntityByCriteria($criteria, $entity);
+            $billingAddress = $entity->getBillingAddress();
+            $shippingAddress = $entity->getShippingAddress();
             if ($order) {
                 $this->strategyHelper->importEntity(
                     $order,
@@ -65,12 +67,20 @@ class OrderImportStrategy extends AbstractImportStrategy
                     ]
                 );
                 $order->setData(array_merge($entity->getData(), $order->getData()) ? : []);
-                $billingAddress = $this->processAddress($entity->getBillingAddress());
-                $shippingAddress = $this->processAddress($entity->getShippingAddress());
+                if ($billingAddress) {
+                    $billingAddress = $this->processAddress($billingAddress);
+                }
+                if ($shippingAddress) {
+                    $shippingAddress = $this->processAddress($shippingAddress);
+                }
             } else {
                 $order = $entity;
-                $billingAddress = $this->processAddress($entity->getBillingAddress(), true);
-                $shippingAddress = $this->processAddress($entity->getShippingAddress(), true);
+                if ($billingAddress) {
+                    $billingAddress = $this->processAddress($billingAddress, true);
+                }
+                if ($shippingAddress) {
+                    $shippingAddress = $this->processAddress($shippingAddress, true);
+                }
             }
 
             $order->setOrganization($organization);
@@ -142,13 +152,14 @@ class OrderImportStrategy extends AbstractImportStrategy
                 $customer->setOrganization($order->getOrganization());
             }
             $primaryAddress = $entity->getPrimaryAddress();
-            $primaryAddress
-                ->setCustomer($customer);
-
-            if (!$existingPrimaryAddress) {
-                $customer->setPrimaryAddress($this->processAddress($primaryAddress, true));
-            } else {
-                $customer->addAddress($this->processAddress($primaryAddress));
+            if ($primaryAddress) {
+                $primaryAddress
+                    ->setCustomer($customer);
+                if (!$existingPrimaryAddress) {
+                    $customer->setPrimaryAddress($this->processAddress($primaryAddress, true));
+                } else {
+                    $customer->addAddress($this->processAddress($primaryAddress));
+                }
             }
 
             $em = $this->strategyHelper->getEntityManager(Customer::class);
