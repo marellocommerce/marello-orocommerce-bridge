@@ -230,7 +230,7 @@ class ReverseSyncProductListener extends AbstractReverseSyncListener
         }
 
         foreach (array_keys($changeSet) as $fieldName) {
-            if (in_array($fieldName, self::SYNC_FIELDS)) {
+            if (in_array($fieldName, self::SYNC_FIELDS) && !empty($changeSet[$fieldName])) {
                 return true;
             }
         }
